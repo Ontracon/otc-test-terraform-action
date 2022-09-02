@@ -17,10 +17,16 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Check Terraform version
         run: terraform version
-      - name: Check tflint version
+      - name: Check install & version
         run: |
              brew install tflint
              tflint --version
+             pip3 install checkov
+             checkov --version
+             brew install chef/chef/inspec
+             inspec --version
+     
+             
 
   
           
