@@ -15,5 +15,12 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Check Terraform version
+        run: terraform version
+      - name: Check tflint version
+        run: |
+             brew install tflint
+             tflint --version
 
+  
           
