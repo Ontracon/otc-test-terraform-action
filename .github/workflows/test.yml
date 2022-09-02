@@ -15,10 +15,5 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: Check versions
-        run: |
-          terraform version
-          tflint --version
-          checkov --version
-          inspec --version
+
           
