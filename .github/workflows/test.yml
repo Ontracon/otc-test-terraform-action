@@ -14,14 +14,26 @@ on:
       - '.github/workflows/test.yml'
 
 jobs:
-  Explore-GitHub-Actions:
+  aws_test:
+  name: Test - terraform test action
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-     
-             
+
+      - id: aws_test
+        name: Test - AWS
+        uses: ./
+        with:
+          ROOT_DIR: '${{ github.workspace }}/tests/aws'
+
+      - id: aws_test
+        name: Test - AWS
+        uses: ./
+        with:
+          ROOT_DIR: '${{ github.workspace }}/tests/azure'
+       
 
   
           
