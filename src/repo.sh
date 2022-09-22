@@ -36,23 +36,23 @@ case $DRY_RUN in
                 fi
             done
 
-            # # Compare STATIC Files
-            # echo -e "- ${INF}Compare static files...${NC}"
-            # git clone $SAMPLE $SAMPLE_REPO &> /dev/null
-            # cd $SCRIPT_DIRECTORY/$SAMPLE_REPO/
-            # for file in ".gitignore" ".pre-commit-config.yaml" ".editorconfig" "CONTRIBUTING.md" "examples/local_tf_run.sh"
-            # do
-            #     cmp -c $file $ROOT_DIR/$file &>/dev/null
-            #     if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
-            #         echo -e "  * ${ERR}NOK:${NC} $file"
-            #         diff --brief $file $ROOT_DIR/$file | tee -i ./OUT.local &>/dev/null
-            #         junit_add_fail "$file differs." "Static file $file diffs from standard" "`cat ./OUT.local`"
-            #         rm ./OUT.local
-            #     else
-            #         echo -e "  * ${OK}OK:${NC} $file"
-            #         junit_add_ok "$file is ok."
-            #     fi
-            # done
+            # Compare STATIC Files
+            echo -e "- ${INF}Compare static files...${NC}"
+            #git clone $SAMPLE $SAMPLE_REPO &> /dev/null
+            cd $SCRIPT_DIRECTORY/SAMPLES/
+            for file in ".gitignore" ".pre-commit-config.yaml"
+            do
+                cmp -c $file $ROOT_DIR/$file &>/dev/null
+                if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+                    echo -e "  * ${ERR}NOK:${NC} $file"
+                    diff --brief $file $ROOT_DIR/$file | tee -i ./OUT.local &>/dev/null
+                    junit_add_fail "$file differs." "Static file $file diffs from standard" "`cat ./OUT.local`"
+                    rm ./OUT.local
+                else
+                    echo -e "  * ${OK}OK:${NC} $file"
+                    junit_add_ok "$file is ok."
+                fi
+            done
             # # Render result file
             junit_render "$RESULTS_DIR/repo.junit.xml"
             #rm -rf $SCRIPT_DIRECTORY/$SAMPLE_REPO

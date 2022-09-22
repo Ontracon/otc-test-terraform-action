@@ -202,7 +202,6 @@ runs:
       shell: bash
       env:
         ROOT_DIR: ${{ inputs.ROOT_DIR}}
-        PUBLISH_NAME: ${{ inputs.PUBLISH_NAME}}
         CLOUD_REGION: ${{ inputs.CLOUD_REGION}}
         OUTPUT: ${{ inputs.OUTPUT}}
 
