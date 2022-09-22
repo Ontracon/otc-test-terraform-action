@@ -14,7 +14,7 @@ on:
       - '.github/workflows/test.yml'
 
 jobs:
-  aws_test:
+  test:
     name: Test - terraform test action
     runs-on: ubuntu-latest
     steps:

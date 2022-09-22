@@ -161,6 +161,28 @@ runs:
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID}}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY}}
 
+    - name: Terraform Compliance check (tflint)
+      run: bash ${{ github.action_path }}/src/compliance.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE" -o "$OUTPUT" -b "$TF_BACKEND_FILE" -a "$AUTO_CREATE_TF_BACKEND"
+      shell: bash
+      env:
+        ROOT_DIR: ${{ inputs.ROOT_DIR}}
+        PUBLISH_NAME: ${{ inputs.PUBLISH_NAME}}
+        TEST_DIR: ${{ inputs.TEST_DIR}}
+        CLOUD_REGION: ${{ inputs.CLOUD_REGION}}
+        OUTPUT: ${{ inputs.OUTPUT}}
+        ROOT_MODULE: ${{ inputs.ROOT_MODULE}}
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN}}
+        DEPLOYMENT_TEST: ${{ inputs.DEPLOYMENT_TEST}}
+        DEPLOYMENT_TEST_ON_PR: ${{ inputs.DEPLOYMENT_TEST_ON_PR}}
+        AUTO_CREATE_TF_BACKEND: ${{ inputs.AUTO_CREATE_TF_BACKEND}}
+        TF_BACKEND_FILE: ${{ inputs.TF_BACKEND_FILE}}
+        AUTO_DESTROY_AFTER_TESTS: ${{ inputs.AUTO_DESTROY_AFTER_TESTS}}
+        ARM_SUBSCRIPTION_ID: ${{ inputs.ARM_SUBSCRIPTION_ID}}
+        ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID}}
+        ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID}}
+        ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET}}
+        AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID}}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY}}
     - name: Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       id: tests
