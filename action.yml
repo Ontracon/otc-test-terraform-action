@@ -187,6 +187,16 @@ runs:
         ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET}}
         AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID}}
         AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY}}
+
+    - name: Terraform Security check (checkov)
+      run: bash ${{ github.action_path }}/src/security.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE" -o "$OUTPUT" -b "$TF_BACKEND_FILE" -a "$AUTO_CREATE_TF_BACKEND"
+      shell: bash
+      env:
+        ROOT_DIR: ${{ inputs.ROOT_DIR}}
+        PUBLISH_NAME: ${{ inputs.PUBLISH_NAME}}
+        CLOUD_REGION: ${{ inputs.CLOUD_REGION}}
+        OUTPUT: ${{ inputs.OUTPUT}}
+
     - name: Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       id: tests
