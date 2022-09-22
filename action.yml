@@ -1,0 +1,140 @@
+ame: 'Module - UNIT TEST'
+description: 'Action for terraform testing of cna root modules & examples'
+
+inputs:
+  ROOT_DIR:
+    description: 'Terraform working directory for testing'
+    required: true
+  PUBLISH_NAME:
+    description: 'Name for Results (Publish Name)'
+    required: false
+    default: ''
+  TEST_DIR:
+    description: 'Directory which contains test fixtures (Terraform TFVARS files)'
+    required: false
+    default: '.tests/cna'
+  CLOUD_REGION:
+    description: 'AWS Region or Azure location to test if TEST_DIR\terraform.CLOUD_REGION.tfvars exists'
+    required: false
+    default: 'default'
+  OUTPUT:
+    description: 'Enable output of commands additional to JUNIT output'
+    required: false
+    default: 'true'
+  ROOT_MODULE:
+    description: 'Is root module'
+    required: false
+    default: 'false'
+  GITHUB_TOKEN:
+    description: 'GITHUB_TOKEN'
+    required: true
+  FAIL_ON:
+    description: 'Configures the state of the created test result check run.'
+    required: false
+    default: 'errors'
+  DEPLOYMENT_TEST:
+    description: 'Make a real deployment to the Cloud & run configured inspec tests from "TEST_DIR"'
+    required: false
+    default: 'false'
+  DEPLOYMENT_TEST_ON_PR:
+    description: 'Make a real deployment on a PR to the Cloud & run configured inspec tests from "TEST_DIR"'
+    required: false
+    default: 'true'
+  DEPLOYMENT_TEST_ON_MAIN:
+    description: 'Make a real deployment when on merge to "main" branch to the Cloud & run configured inspec tests from "TEST_DIR"'
+    required: false
+    default: 'true'
+  CUSTOM_INSPEC_DIR:
+    description: 'Additional custom Inspec Profile below the "TEST_DIR" to run (eg. for local testing with http resource)'
+    required: false
+    default: ''
+  CUSTOM_INSPEC_ARG:
+    description: 'Argument to run the custom inspec profile in "CUSTOM_INSPEC_DIR"'
+    required: false
+    default: ''
+  INSPEC_WAIT_TIME:
+    description: 'Time in seconds to wait after terraform deployment before inspec test will start"'
+    required: false
+    default: '1'
+  AUTO_CREATE_TF_BACKEND:
+    description: 'Create Backend Configuration and use Auto configured Remote Backend per Cloud Region'
+    required: false
+    default: 'true'
+  TF_BACKEND_FILE:
+    description: 'Make a real deployment to the Cloud & run configured inspec tests from "TEST_DIR"'
+    required: false
+    default: ''
+  AUTO_DESTROY_AFTER_TESTS:
+    description: 'Make a real deployment to the Cloud & run configured inspec tests from "TEST_DIR"'
+    required: false
+    default: 'true'
+  AUTO_DESTROY_WAIT_TIME:
+    description: 'Time in seconds to wait after first terraform destroy before second attempt to destroy the infrastructure'
+    required: false
+    default: '120'
+  ARM_SUBSCRIPTION_ID:
+    description: 'ARM_SUBSCRIPTION_ID'
+    required: false
+    default: ''
+  ARM_CLIENT_ID:
+    description: 'ARM_CLIENT_ID'
+    required: false
+    default: ''
+  ARM_TENANT_ID:
+    description: 'ARM_TENANT_ID'
+    required: false
+    default: ''
+  ARM_CLIENT_SECRET:
+    description: 'ARM_CLIENT_SECRET'
+    required: false
+    default: ''
+  AWS_ACCESS_KEY_ID:
+    description: 'AWS_ACCESS_KEY_ID'
+    required: false
+    default: ''
+  AWS_SECRET_ACCESS_KEY:
+    description: 'AWS_SECRET_ACCESS_KEY'
+    required: false
+    default: ''
+  MARKDOWN_FILE:
+    description: 'Custom Markdown File for Badges including path'
+    required: false
+    default: ''
+
+outputs:
+  test-result:
+    description: 'Test Results conclusion'
+    value: ${{ fromJSON( steps.tests.outputs.json ).conclusion }}
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Pre-Flight Check
+      run: bash ${{ github.action_path }}/src/pre-flight.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE" -o "$OUTPUT" -b "$TF_BACKEND_FILE" -a "$AUTO_CREATE_TF_BACKEND"
+      shell: bash
+      env:
+        ROOT_DIR: ${{ inputs.ROOT_DIR}}
+        TEST_DIR: ${{ inputs.TEST_DIR}}
+        CLOUD_REGION: ${{ inputs.CLOUD_REGION}}
+        OUTPUT: ${{ inputs.OUTPUT}}
+        ROOT_MODULE: ${{ inputs.ROOT_MODULE }}
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+        FAIL_ON: ${{ inputs.FAIL_ON }}
+        DEPLOYMENT_TEST: ${{ inputs.DEPLOYMENT_TEST}}
+        DEPLOYMENT_TEST_ON_PR: ${{ inputs.DEPLOYMENT_TEST_ON_PR}}
+        AUTO_CREATE_TF_BACKEND: ${{ inputs.AUTO_CREATE_TF_BACKEND}}
+        TF_BACKEND_FILE: ${{ inputs.TF_BACKEND_FILE}}
+        AUTO_DESTROY_AFTER_TESTS: ${{ inputs.AUTO_DESTROY_AFTER_TESTS}}
+        ARM_SUBSCRIPTION_ID: ${{ inputs.ARM_SUBSCRIPTION_ID}}
+        ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID}}
+        ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID}}
+        ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET}}
+        AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID}}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY}}
+        DEPLOYMENT_TEST_ON_MAIN: ${{ inputs.DEPLOYMENT_TEST_ON_MAIN}}
+        CUSTOM_INSPEC_DIR: ${{ inputs.CUSTOM_INSPEC_DIR}}
+        CUSTOM_INSPEC_ARG: ${{ inputs.CUSTOM_INSPEC_ARG}}
+        INSPEC_WAIT_TIME: ${{ inputs.INSPEC_WAIT_TIME}}
+        AUTO_DESTROY_WAIT_TIME: ${{ inputs.AUTO_DESTROY_WAIT_TIME}}
+        MARKDOWN_FILE: ${{ inputs.MARKDOWN_FILE}}
