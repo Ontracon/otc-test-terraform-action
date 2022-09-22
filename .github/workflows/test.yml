@@ -36,6 +36,7 @@ jobs:
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/azure'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ROOT_MODULE: 'true'
        
 
   
