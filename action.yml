@@ -142,6 +142,15 @@ runs:
     - id: Install
       name: Test - Check & Install Toolset without override
       uses: Ontracon/otc-install-action@main
+    - name: Repo check (files)
+      run: bash ${{ github.action_path }}/src/repo.sh -d "$ROOT_DIR"
+      shell: bash
+      env:
+        ROOT_DIR: ${{ inputs.ROOT_DIR}}
+        PUBLISH_NAME: ${{ inputs.PUBLISH_NAME}}
+        OUTPUT: ${{ inputs.OUTPUT}}
+        ROOT_MODULE: ${{ inputs.ROOT_MODULE}}
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN}}
 
     - name: Terraform base check (format & validate)
       run: bash ${{ github.action_path }}/src/base.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE" -o "$OUTPUT" -b "$TF_BACKEND_FILE" -a "$AUTO_CREATE_TF_BACKEND"
