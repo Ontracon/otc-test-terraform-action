@@ -27,12 +27,14 @@ jobs:
         uses: ./
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/aws'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - id: azure_test
         name: Test - Azure
         uses: ./
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/azure'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
 
   
