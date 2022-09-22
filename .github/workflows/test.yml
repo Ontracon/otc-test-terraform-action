@@ -29,6 +29,7 @@ jobs:
           ROOT_DIR: '${{ github.workspace }}/tests/root'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ROOT_MODULE: 'true'
+          PUBLISH_NAME: 'Results - root'
 
       # - id: aws_test
       #   name: Test - AWS
