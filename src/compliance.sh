@@ -14,8 +14,8 @@ get_opts "$@"
 function terraform_compliance()
 {
     mkdir -p ~/.tflint.d
-    unzip $SCRIPT_DIRECTORY/install/tflint-ruleset-aws_linux_amd64.zip -d ~/.tflint.d/plugins
-    unzip $SCRIPT_DIRECTORY/install/tflint-ruleset-azurerm_linux_amd64.zip -d ~/.tflint.d/plugins
+    unzip $SCRIPT_DIRECTORY/install/tflint-ruleset-aws_linux_amd64.zip -d ~/.tflint.d/plugins &> /dev/null
+    unzip $SCRIPT_DIRECTORY/install/tflint-ruleset-azurerm_linux_amd64.zip -d ~/.tflint.d/plugins &> /dev/null
     dir=$(basename $ROOT_DIR)
     echo -e "  * ${OK}Tflint Version:${NC} "
     tflint --version
@@ -50,6 +50,6 @@ else echo -e "  * ${OK}CNA tflint config${NC}: Using $SCRIPT_DIRECTORY/tflint.hc
 TFLINTARGS=""
 if [[ "$AZURE" == "true" ]]; then TFLINTARGS="$TFLINTARGS--enable-plugin=azurerm "; fi
 if [[ "$AWS" == "true" ]]; then TFLINTARGS="$TFLINTARGS--enable-plugin=aws "; fi
-if [[ "$ROOT_MODULE" == "true" ]]; then TFLINTARGS="$TFLINTARGS"; fi
+if [[ "$ROOT_MODULE" == "true" ]]; then TFLINTARGS="$TFLINTARGS--enable-rule=terraform_standard_module_structure"; fi
 echo -e "  * ${INF}tflint args${NC}: $TFLINTARGS"
 terraform_compliance
