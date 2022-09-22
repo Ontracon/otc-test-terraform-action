@@ -19,6 +19,9 @@
 # Crash log files
 crash.log
 
+# tmp files
+*.tmp
+
 # inspec files
 inspec.lock
 
