@@ -28,6 +28,7 @@ jobs:
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/aws'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ROOT_MODULE: 'true'
 
       - id: azure_test
         name: Test - Azure

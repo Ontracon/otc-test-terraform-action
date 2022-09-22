@@ -12,7 +12,7 @@ inputs:
   TEST_DIR:
     description: 'Directory which contains test fixtures (Terraform TFVARS files)'
     required: false
-    default: '.tests/cna'
+    default: '.test'
   CLOUD_REGION:
     description: 'AWS Region or Azure location to test if TEST_DIR\terraform.CLOUD_REGION.tfvars exists'
     required: false
