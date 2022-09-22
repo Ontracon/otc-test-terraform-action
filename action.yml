@@ -138,3 +138,13 @@ runs:
         INSPEC_WAIT_TIME: ${{ inputs.INSPEC_WAIT_TIME}}
         AUTO_DESTROY_WAIT_TIME: ${{ inputs.AUTO_DESTROY_WAIT_TIME}}
         MARKDOWN_FILE: ${{ inputs.MARKDOWN_FILE}}
+
+    - name: Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      id: tests
+      if: always()
+      with:
+        junit_files: '${{ inputs.ROOT_DIR }}/.results/*.xml'
+        check_name: ${{ inputs.PUBLISH_NAME }}
+        fail_on: ${{ inputs.FAIL_ON }}
+        job_summary: false
