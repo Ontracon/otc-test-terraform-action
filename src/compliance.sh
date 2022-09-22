@@ -50,6 +50,6 @@ else echo -e "  * ${OK}CNA tflint config${NC}: Using $SCRIPT_DIRECTORY/tflint.hc
 TFLINTARGS=""
 if [[ "$AZURE" == "true" ]]; then TFLINTARGS="$TFLINTARGS--enable-plugin=azurerm "; fi
 if [[ "$AWS" == "true" ]]; then TFLINTARGS="$TFLINTARGS--enable-plugin=aws "; fi
-if [[ "$ROOT_MODULE" == "true" ]]; then TFLINTARGS="$TFLINTARGS--enable-plugin=cna "; fi
+if [[ "$ROOT_MODULE" == "true" ]]; then TFLINTARGS="$TFLINTARGS"; fi
 echo -e "  * ${INF}tflint args${NC}: $TFLINTARGS"
 terraform_compliance

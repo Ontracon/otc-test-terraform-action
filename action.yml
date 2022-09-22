@@ -138,7 +138,9 @@ runs:
         INSPEC_WAIT_TIME: ${{ inputs.INSPEC_WAIT_TIME}}
         AUTO_DESTROY_WAIT_TIME: ${{ inputs.AUTO_DESTROY_WAIT_TIME}}
         MARKDOWN_FILE: ${{ inputs.MARKDOWN_FILE}}
-
+    - id: Install
+      name: Test - Check & Install Toolset without override
+      uses: Ontracon/otc-install-action@main
     - name: Terraform base check (format & validate)
       run: bash ${{ github.action_path }}/src/base.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE" -o "$OUTPUT" -b "$TF_BACKEND_FILE" -a "$AUTO_CREATE_TF_BACKEND"
       shell: bash
