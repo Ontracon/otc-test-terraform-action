@@ -33,11 +33,7 @@ case $DRY_RUN in
                 else
                     echo -e "  * ${ERR}NOK:${NC} $file does not exists."
                     junit_add_fail "$file is NOK." "File $file does not exist"
-                firoot - outputs.tf ‑ terraform_documented_outputs
-root - variables.tf ‑ terraform_standard_module_structure
-root ‑ .gitignore is missing.
-root ‑ .gitignore is ok.
-root ‑ .pre-commit-config.yaml differs.
+                fi
             done
 
             # Compare STATIC Files
