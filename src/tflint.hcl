@@ -11,10 +11,6 @@ plugin "aws" {
 plugin "azurerm" {
     enabled = false
 }
-
-plugin "cna" {
- enabled = false
- }
   
 rule "terraform_comment_syntax" {
   enabled = true
