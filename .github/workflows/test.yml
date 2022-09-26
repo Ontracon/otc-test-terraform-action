@@ -13,6 +13,10 @@ on:
       - 'action.yml'
       - '.github/workflows/test.yml'
 
+#Ensures that only one terraform task run at a time.
+concurrency:
+  group: terraform
+
 jobs:
   test:
     name: Test - terraform test action
