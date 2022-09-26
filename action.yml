@@ -142,6 +142,20 @@ runs:
     - id: Install
       name: Test - Check & Install Toolset without override
       uses: Ontracon/otc-install-action@main
+
+    - name: Bootstrap Cloud Room (${{ inputs.TEST_DIR}})
+      uses: Ontracon/otc-init-terraform-action@main
+      if: ${{ inputs.AUTO_CREATE_TF_BACKEND=='true' && inputs.ROOT_MODULE=='false' }}
+      with:
+        configuration_file: '${{ github.action_path }}/src/${{ inputs.TEST_DIR}}/${{ inputs.CLOUD_REGION}}.tfbackend'
+        CLOUD_REGION: ${{ inputs.CLOUD_REGION}}
+        ARM_SUBSCRIPTION_ID: ${{ inputs.ARM_SUBSCRIPTION_ID}}
+        ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID}}
+        ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID}}
+        ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET}}
+        AWS_ACCESS_KEY_ID: ${{ inputs.AWS_ACCESS_KEY_ID}}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.AWS_SECRET_ACCESS_KEY}}
+
     - name: Repo check (files)
       run: bash ${{ github.action_path }}/src/repo.sh -d "$ROOT_DIR"
       shell: bash
