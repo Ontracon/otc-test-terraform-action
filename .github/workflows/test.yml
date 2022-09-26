@@ -23,14 +23,14 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - uses: actions/checkout@v3
 
-      # - id: root_test
-      #   name: Test - Root Module
-      #   uses: ./
-      #   with:
-      #     ROOT_DIR: '${{ github.workspace }}/tests/root'
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     ROOT_MODULE: 'true'
-      #     PUBLISH_NAME: 'Results - root'
+      - id: root_test
+        name: Test - Root Module
+        uses: ./
+        with:
+          ROOT_DIR: '${{ github.workspace }}/tests/root'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ROOT_MODULE: 'true'
+          PUBLISH_NAME: 'Results - root'
 
       - id: aws_test
         name: Test - AWS
@@ -40,16 +40,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUTO_CREATE_TF_BACKEND: 'false'
           AWS_ACCESS_KEY_ID: ${{ secrets.OTC_TEST_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_TEST_AWS_SECRET_ACCESS_KEY }}
-      
-      # - id: azure_test
-      #   name: Test - Azure
-      #   uses: ./
-      #   with:
-      #     ROOT_DIR: '${{ github.workspace }}/tests/azure'
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     AUTO_CREATE_TF_BACKEND: 'false'
-       
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_TEST_AWS_SECRET_ACCESS_KEY }
+          PUBLISH_NAME: 'Results - AWS'      
+
+      - id: azure_test
+        name: Test - Azure
+        uses: ./
+        with:
+          ROOT_DIR: '${{ github.workspace }}/tests/azure'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTO_CREATE_TF_BACKEND: 'false'
+          ARM_CLIENT_ID: ${{ secrets.OTC_TEST_ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.OTC_TEST_ARM_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.OTC_TEST_ARM_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.OTC_TEST_ARM_SUBSCRIPTION_ID }}
+          PUBLISH_NAME: 'Results - Azure'      
 
   
           
