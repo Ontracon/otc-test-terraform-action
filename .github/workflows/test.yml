@@ -22,6 +22,12 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - uses: actions/checkout@v3
+    - name: Prepare Git User
+      run: |
+          # use github token transparently for cloning private terraform module repositories
+          git config --add http."https://github.com/".extraheader "Authorization: basic $(echo -n "x-access-token:${{ inputs.GITHUB_TOKEN }}" | base64)"
+      shell: bash
+
       - id: root_test
         name: Test - Root Module
         uses: ./
@@ -37,6 +43,7 @@ jobs:
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/aws'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTO_CREATE_TF_BACKEND: 'false'
       
       - id: azure_test
         name: Test - Azure
@@ -44,6 +51,7 @@ jobs:
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/azure'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AUTO_CREATE_TF_BACKEND: 'false'
        
 
   
