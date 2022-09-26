@@ -1,5 +1,9 @@
 # Test Sample AWS
 
+<!--.test-eu-central-1-test-start-->
+
+<!--.test-eu-central-1-test-end-->
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
