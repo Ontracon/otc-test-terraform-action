@@ -22,11 +22,6 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - uses: actions/checkout@v3
-      - name: Prepare Git User
-        run: |
-            # use github token transparently for cloning private terraform module repositories
-            git config --global --add http."https://github.com/Ontracon".extraheader "Authorization: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
-        shell: bash
 
       # - id: root_test
       #   name: Test - Root Module
