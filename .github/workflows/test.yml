@@ -31,21 +31,19 @@ jobs:
           ROOT_MODULE: 'true'
           PUBLISH_NAME: 'Results - root'
 
-      # - id: aws_test
-      #   name: Test - AWS
-      #   uses: ./
-      #   with:
-      #     ROOT_DIR: '${{ github.workspace }}/tests/aws'
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     ROOT_MODULE: 'true'
-      # 
-      # - id: azure_test
-      #   name: Test - Azure
-      #   uses: ./
-      #   with:
-      #     ROOT_DIR: '${{ github.workspace }}/tests/azure'
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     ROOT_MODULE: 'true'
+      - id: aws_test
+        name: Test - AWS
+        uses: ./
+        with:
+          ROOT_DIR: '${{ github.workspace }}/tests/aws'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - id: azure_test
+        name: Test - Azure
+        uses: ./
+        with:
+          ROOT_DIR: '${{ github.workspace }}/tests/azure'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
 
   
