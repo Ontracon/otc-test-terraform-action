@@ -1,5 +1,5 @@
-ame: 'Module - UNIT TEST'
-description: 'Action for terraform testing of cna root modules & examples'
+name: 'Module - UNIT TEST'
+description: 'Action for terraform testing of root modules & examples'
 
 inputs:
   ROOT_DIR:
