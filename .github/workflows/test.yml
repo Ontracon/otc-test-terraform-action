@@ -39,6 +39,8 @@ jobs:
           ROOT_DIR: '${{ github.workspace }}/tests/aws'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUTO_CREATE_TF_BACKEND: 'false'
+          AWS_ACCESS_KEY_ID: ${{ secrets.OTC_TEST_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_TEST_AWS_SECRET_ACCESS_KEY }}
       
       # - id: azure_test
       #   name: Test - Azure
