@@ -1,7 +1,11 @@
 # Test Sammple Azure
 
 <!--.test-westeurope-test-start-->
-
+[![TF Base](https://img.shields.io/static/v1?logo=terraform&style=plastic&label=TF%20Base&message=✓%203%20|✗%200%20|▲%200|➝%200&color=success)](https://github.com/Ontracon/otc-test-terraform-action/actions/runs/3130255610)
+[![TF Compliance (tflint)](https://img.shields.io/static/v1?logo=terraform&style=plastic&label=TF%20Compliance%20(tflint)&message=✓%202%20|✗%20%20|▲%202|➝%200&color=yellow)](https://github.com/Ontracon/otc-test-terraform-action/actions/runs/3130255610)
+[![Security (Checkov)](https://img.shields.io/static/v1?logo=terraform&style=plastic&label=Security%20(Checkov)&message=✓%20Success&color=success)](https://github.com/Ontracon/otc-test-terraform-action/actions/runs/3130255610)
+[![TF Deploy](https://img.shields.io/static/v1?logo=terraform&style=plastic&label=TF%20Deploy&message=✓%205%20|✗%200%20|▲%200|➝%200&color=success)](https://github.com/Ontracon/otc-test-terraform-action/actions/runs/3130255610)
+[![Inspec - azure](https://img.shields.io/static/v1?logo=chef&style=plastic&label=Inspec%20-%20azure&message=no%20results&color=inactive)](https://github.com/Ontracon/otc-test-terraform-action/actions/runs/3130255610)
 <!--.test-westeurope-test-end-->
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
