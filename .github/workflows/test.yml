@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUTO_CREATE_TF_BACKEND: 'false'
           AWS_ACCESS_KEY_ID: ${{ secrets.OTC_TEST_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_TEST_AWS_SECRET_ACCESS_KEY }
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_TEST_AWS_SECRET_ACCESS_KEY }}
           PUBLISH_NAME: 'Results - AWS'      
 
       - id: azure_test
