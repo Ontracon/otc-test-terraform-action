@@ -45,13 +45,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AUTO_CREATE_TF_BACKEND: 'false'
       
-      - id: azure_test
-        name: Test - Azure
-        uses: ./
-        with:
-          ROOT_DIR: '${{ github.workspace }}/tests/azure'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AUTO_CREATE_TF_BACKEND: 'false'
+      # - id: azure_test
+      #   name: Test - Azure
+      #   uses: ./
+      #   with:
+      #     ROOT_DIR: '${{ github.workspace }}/tests/azure'
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     AUTO_CREATE_TF_BACKEND: 'false'
        
 
   
