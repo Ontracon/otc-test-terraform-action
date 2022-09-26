@@ -25,17 +25,17 @@ jobs:
       - name: Prepare Git User
         run: |
             # use github token transparently for cloning private terraform module repositories
-            git config --add http."https://github.com/".extraheader "Authorization: basic $(echo -n "x-access-token:${{ inputs.GITHUB_TOKEN }}" | base64)"
+            git config --add http."https://github.com/Ontracon/".extraheader "Authorization: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
         shell: bash
 
-      - id: root_test
-        name: Test - Root Module
-        uses: ./
-        with:
-          ROOT_DIR: '${{ github.workspace }}/tests/root'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ROOT_MODULE: 'true'
-          PUBLISH_NAME: 'Results - root'
+      # - id: root_test
+      #   name: Test - Root Module
+      #   uses: ./
+      #   with:
+      #     ROOT_DIR: '${{ github.workspace }}/tests/root'
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     ROOT_MODULE: 'true'
+      #     PUBLISH_NAME: 'Results - root'
 
       - id: aws_test
         name: Test - AWS
