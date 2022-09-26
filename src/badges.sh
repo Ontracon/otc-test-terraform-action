@@ -87,7 +87,7 @@ else
 
         echo $START > $TMP
         if [[ "$ROOT_MODULE" == "true" ]]; then
-            get_badge_url "$RESULTS_DIR/repo.junit.xml" "CNA repo" "git" >> $TMP
+            get_badge_url "$RESULTS_DIR/repo.junit.xml" "OTC repo" "git" >> $TMP
         fi
         get_badge_url "$RESULTS_DIR/base.junit.xml" "TF Base" "terraform" >> $TMP
         get_badge_url "$RESULTS_DIR/tflint.junit.xml" "TF Compliance (tflint)" "terraform" >> $TMP

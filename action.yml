@@ -233,6 +233,17 @@ runs:
         INSPEC_WAIT_TIME: ${{ inputs.INSPEC_WAIT_TIME}}
         AUTO_DESTROY_WAIT_TIME: ${{ inputs.AUTO_DESTROY_WAIT_TIME}}
 
+    - name: Add badges to README.md
+      if: always()
+      run: bash ${{ github.action_path }}/src/badges.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE"
+      shell: bash
+      env:
+        ROOT_DIR: ${{ inputs.ROOT_DIR}}
+        TEST_DIR: ${{ inputs.TEST_DIR}}
+        CLOUD_REGION: ${{ inputs.CLOUD_REGION}}
+        ROOT_MODULE: ${{ inputs.ROOT_MODULE}}
+        MARKDOWN_FILE: ${{ inputs.MARKDOWN_FILE}}
+
     - name: Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
       id: tests
