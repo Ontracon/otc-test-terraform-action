@@ -25,7 +25,7 @@ jobs:
       - name: Prepare Git User
         run: |
             # use github token transparently for cloning private terraform module repositories
-            git config --global --add http."https://github.com/Ontracon/".extraheader "Authorization: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
+            git config --global --add http."https://github.com/Ontracon".extraheader "Authorization: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
         shell: bash
 
       # - id: root_test
