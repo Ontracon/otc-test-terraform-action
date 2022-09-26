@@ -1,4 +1,4 @@
-# aws
+# Test Sammple AWS
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -17,9 +17,7 @@
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_common"></a> [common](#module\_common) | git::https://github.com/Ontracon/tfm-cloud-commons.git | 1.0.0 |
+No modules.
 
 ## Resources
 

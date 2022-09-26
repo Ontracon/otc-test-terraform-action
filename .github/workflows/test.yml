@@ -37,7 +37,8 @@ jobs:
         uses: ./
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/aws'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          CLOUD_REGION: 'eu-central-1'
           AUTO_CREATE_TF_BACKEND: 'false'
           AWS_ACCESS_KEY_ID: ${{ secrets.OTC_TEST_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.OTC_TEST_AWS_SECRET_ACCESS_KEY }}
@@ -49,6 +50,7 @@ jobs:
         with:
           ROOT_DIR: '${{ github.workspace }}/tests/azure'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLOUD_REGION: 'westeurope'
           AUTO_CREATE_TF_BACKEND: 'false'
           ARM_CLIENT_ID: ${{ secrets.OTC_TEST_ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.OTC_TEST_ARM_CLIENT_SECRET }}

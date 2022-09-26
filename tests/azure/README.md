@@ -1,4 +1,4 @@
-# azure
+# Test Sammple Azure
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
