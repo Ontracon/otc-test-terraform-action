@@ -21,7 +21,16 @@ jobs:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Get APP token
+        id: otc-tests
+        uses: peter-murray/workflow-application-token-action@v2
+        with:
+          application_id: ${{ secrets.APP_ID }}
+          application_private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - uses: actions/checkout@v3
+        with:
+          token: ${{ steps.otc-tests.outputs.token }}
 
       - id: root_test
         name: Test - Root Module
