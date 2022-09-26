@@ -1,0 +1,4 @@
+resource_group_name  = "otc-tst-westeurope-auto-tfstates-rg"
+storage_account_name = "otctstweurautfstate"
+container_name       = "auto-tfstates"
+key                  = "empty"
