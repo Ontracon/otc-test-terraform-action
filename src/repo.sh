@@ -25,7 +25,7 @@ case $DRY_RUN in
             junit_init "Base Repo"
             # check for mandatoy files in repo
             echo -e "- ${INF}Check if mandatory files exists...${NC}"
-            for file in ".gitignore" "README.md" ".pre-commit-config.yaml" "MODULE.md"
+            for file in ".gitignore" "README.md" ".pre-commit-config.yaml"
             do
                 if [[ -f "$ROOT_DIR/$file" ]]; then
                     echo -e "  * ${OK}OK:${NC} $file exists."
