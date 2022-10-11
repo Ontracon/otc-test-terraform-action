@@ -248,7 +248,7 @@ runs:
         AUTO_DESTROY_WAIT_TIME: ${{ inputs.AUTO_DESTROY_WAIT_TIME}}
 
     - name: Add badges to README.md
-      if: always()
+      if: ${{ always() && github.ref == 'refs/heads/master' }}
       run: bash ${{ github.action_path }}/src/badges.sh -d "$ROOT_DIR" -t "$TEST_DIR" -r "$CLOUD_REGION" -m "$ROOT_MODULE"
       shell: bash
       env:
